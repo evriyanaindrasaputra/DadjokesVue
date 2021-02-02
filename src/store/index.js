@@ -8,13 +8,16 @@ export default new Vuex.Store({
   state: {
     joke: [],
     favoritJokes: [],
+    tempFavorits: [],
   },
   mutations: {
     setStateJoke(state, payload) {
       state.joke = payload;
     },
     setStateFavoritJokes(state, payload) {
-      state.favoritJokes.push(payload);
+      state.tempFavorits = [payload, ...state.tempFavorits];
+      state.favoritJokes = Array.from(new Set(state.tempFavorits));
+      state.tempFavorits = [...state.favoritJokes];
     },
     deleteStateJoke(state, payload) {
       const newFavor = state.favoritJokes.filter(

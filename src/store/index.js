@@ -1,36 +1,46 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 const url = "https://icanhazdadjoke.com";
 const headers = { Accept: "application/json" };
 export default new Vuex.Store({
   state: {
-    joke : [],
-    favoritJokes : []
+    joke: [],
+    favoritJokes: [],
   },
   mutations: {
-    setStateJoke(state, payload){
-      state.joke = payload
+    setStateJoke(state, payload) {
+      state.joke = payload;
     },
-    setStateFavoritJokes(state, payload){
-      state.favoritJokes.push(payload)
+    setStateFavoritJokes(state, payload) {
+      state.favoritJokes.push(payload);
+    },
+    deleteStateJoke(state, payload) {
+      const newFavor = state.favoritJokes.filter(
+        (favor) => favor.id !== payload.id
+      );
+      state.favoritJokes = newFavor;
     },
   },
   actions: {
     setJoke(state) {
-      fetch(url, {headers}).then(response => response.json()).then(data => {
-        state.commit('setStateJoke', data)
-      })
+      fetch(url, { headers })
+        .then((response) => response.json())
+        .then((data) => {
+          state.commit("setStateJoke", data);
+        });
     },
-    setFavoritJokes(state, joke){
-      state.commit('setStateFavoritJokes', joke)
-    }
+    setFavoritJokes(state, joke) {
+      state.commit("setStateFavoritJokes", joke);
+    },
+    deleteJoke(state, joke) {
+      state.commit("deleteStateJoke", joke);
+    },
   },
-  modules: {
-  },
+  modules: {},
   getters: {
-    getJoke : state => state.joke,
-    getFavoritJokes : state => state.favoritJokes
-  }
-})
+    getJoke: (state) => state.joke,
+    getFavoritJokes: (state) => state.favoritJokes,
+  },
+});

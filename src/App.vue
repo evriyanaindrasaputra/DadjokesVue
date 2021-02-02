@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="bg-white">
+    <h2 class="text2xl tracking-tight md:text-4xl font-bold text-black pt-5">
+      DadJokes Fav
+    </h2>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/favorit">Favorit</router-link>
@@ -18,7 +21,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 10px;
 }
 
 #nav a {

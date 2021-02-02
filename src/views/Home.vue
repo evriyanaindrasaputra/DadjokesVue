@@ -18,7 +18,6 @@
       >
         <p class="text-base font-medium text-black">Add to Favorit</p>
       </button>
-      {{ favoritJokes }}
     </div>
   </div>
 </template>

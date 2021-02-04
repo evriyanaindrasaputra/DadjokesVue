@@ -32,25 +32,16 @@ export default {
     // favoritJokes : []
   }),
   methods: {
-    ...mapActions(['setJoke', 'setFavoritJokes']),
+    ...mapActions('joke',['setJoke', 'setFavoritJokes']),
     addJoke(){
       this.setJoke()
     },
     addtoFavorit(){
       this.setFavoritJokes(this.joke)
     }
-    // getJoke(){
-    //   fetch(url, {headers}).then(response => response.json()).then(data => {
-    //     this.joke = data
-    //   })
-    // },
-    // AdtoFavorit() {
-    //   const newJoke = this.joke
-    //   this.favoritJokes.push(newJoke)
-    // }
   },
   computed: {
-    ...mapGetters(['getJoke', 'getFavoritJokes']),
+    ...mapGetters('joke',['getJoke', 'getFavoritJokes']),
     joke(){
       return this.getJoke;
     },

@@ -47,13 +47,13 @@ export default {
     // favoritJokes : []
   }),
   methods: {
-    ...mapActions(['deleteJoke' ]),
+    ...mapActions('joke',['deleteJoke' ]),
     deleteFavorJoke(favor){
      this.deleteJoke(favor)
     }
   },
   computed: {
-    ...mapGetters(['getFavoritJokes']),
+    ...mapGetters('joke',['getFavoritJokes']),
     favoritJokes(){
       return this.getFavoritJokes
     }
